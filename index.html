@@ -35,7 +35,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
 </head>
 <body>
     <div id="map"></div>
@@ -78,10 +77,21 @@
             {coords: [52.2496, 20.9933], popupText: "Muzeum Historii Żydów Polskich POLIN"},
             {coords: [52.1659, 21.0905], popupText: "Pałac w Wilanowie"},
             {coords: [52.3273, 21.0375], popupText: "Przystanek Alpaka"},
+            {coords: [52.3401, 21.2471], popupText: "Apartamenty 5.0", iconColor: "red"}
         ];
 
         markers.forEach(function(marker) {
-            var markerInstance = L.marker(marker.coords).addTo(map);
+            var icon = marker.iconColor ? L.AwesomeMarkers.icon({
+                icon: 'info-sign',
+                markerColor: marker.iconColor,
+                prefix: 'glyphicon'
+            }) : L.AwesomeMarkers.icon({
+                icon: 'info-sign',
+                markerColor: 'blue',
+                prefix: 'glyphicon'
+            });
+
+            var markerInstance = L.marker(marker.coords, {icon: icon}).addTo(map);
             var popup = L.popup({maxWidth: "100%"}).setContent(
                 $('<div>', {style: "width: 100.0%; height: 100.0%;"}).text(marker.popupText)[0]
             );
