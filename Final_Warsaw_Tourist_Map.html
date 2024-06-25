@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="content-type" content="text/html;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script>
         L_NO_TOUCH = false;
@@ -38,15 +37,15 @@
             position: relative;
             width: 100%;
             height: 100%;
-            left: 0%;
-            top: 0%;
+            left: 0;
+            top: 0;
         }
     </style>
 </head>
 <body>
-    <div class="folium-map" id="map_76501fc6548db0c01a7fcf5f27fcbd2f"></div>
+    <div id="map_76501fc6548db0c01a7fcf5f27fcbd2f"></div>
     <script>
-        var map_76501fc6548db0c01a7fcf5f27fcbd2f = L.map("map_76501fc6548db0c01a7fcf5f27fcbd2f", {
+        var map = L.map("map_76501fc6548db0c01a7fcf5f27fcbd2f", {
             center: [52.2297, 21.0122],
             crs: L.CRS.EPSG3857,
             zoom: 12,
@@ -54,7 +53,7 @@
             preferCanvas: false,
         });
 
-        var tile_layer_4d5234860e1d58111169849c8f12d95d = L.tileLayer(
+        var tileLayer = L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             {
                 attribution: "Data by &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>, under <a href=\"http://www.openstreetmap.org/copyright\">ODbL</a>.",
@@ -67,37 +66,23 @@
                 subdomains: "abc",
                 tms: false
             }
-        ).addTo(map_76501fc6548db0c01a7fcf5f27fcbd2f);
+        ).addTo(map);
 
-        var marker_2178c975aa48f455d6c08cd49ee90893 = L.marker([52.2207, 21.0174], {}).addTo(map_76501fc6548db0c01a7fcf5f27fcbd2f);
-        var popup_d3163bc52f588d1ada35d3b456eff56b = L.popup({maxWidth: "100%"});
-        var html_c468645fc986cac1b0d048695eeaeb0a = $(`<div id="html_c468645fc986cac1b0d048695eeaeb0a" style="width: 100.0%; height: 100.0%;">BAR WAGA</div>`)[0];
-        popup_d3163bc52f588d1ada35d3b456eff56b.setContent(html_c468645fc986cac1b0d048695eeaeb0a);
-        marker_2178c975aa48f455d6c08cd49ee90893.bindPopup(popup_d3163bc52f588d1ada35d3b456eff56b);
+        var markers = [
+            {coords: [52.2207, 21.0174], popupText: "BAR WAGA"},
+            {coords: [52.241, 21.027], popupText: "Centrum Nauki Kopernik"},
+            {coords: [52.2355, 21.0051], popupText: "Centrum Pieniądza NBP"},
+            {coords: [52.2078, 20.9712], popupText: "Kolejka Grawitacyjna Park Szczęśliwicki"},
+            {coords: [52.2545, 21.0127], popupText: "Warsaw Spire"}
+        ];
 
-        var marker_c1b169c5499522d378ac4d5f35de98a2 = L.marker([52.241, 21.027], {}).addTo(map_76501fc6548db0c01a7fcf5f27fcbd2f);
-        var popup_13fd9542bbe6616e65f8882f52dcca65 = L.popup({maxWidth: "100%"});
-        var html_0724fc84ebd56f9f4215f59069170e49 = $(`<div id="html_0724fc84ebd56f9f4215f59069170e49" style="width: 100.0%; height: 100.0%;">Centrum Nauki Kopernik</div>`)[0];
-        popup_13fd9542bbe6616e65f8882f52dcca65.setContent(html_0724fc84ebd56f9f4215f59069170e49);
-        marker_c1b169c5499522d378ac4d5f35de98a2.bindPopup(popup_13fd9542bbe6616e65f8882f52dcca65);
-
-        var marker_8692f0f9ece9be948b645c6cf096030b = L.marker([52.2355, 21.0051], {}).addTo(map_76501fc6548db0c01a7fcf5f27fcbd2f);
-        var popup_b3614f6d4ec7db18f6eaac107d5dfdf3 = L.popup({maxWidth: "100%"});
-        var html_ca29c5daa49d75cac13b056ad682a8c8 = $(`<div id="html_ca29c5daa49d75cac13b056ad682a8c8" style="width: 100.0%; height: 100.0%;">Centrum Pieniądza NBP</div>`)[0];
-        popup_b3614f6d4ec7db18f6eaac107d5dfdf3.setContent(html_ca29c5daa49d75cac13b056ad682a8c8);
-        marker_8692f0f9ece9be948b645c6cf096030b.bindPopup(popup_b3614f6d4ec7db18f6eaac107d5dfdf3);
-
-        var marker_f25378a3a8ee9fede3d65ff194c2d352 = L.marker([52.2078, 20.9712], {}).addTo(map_76501fc6548db0c01a7fcf5f27fcbd2f);
-        var popup_827bfbb9f8414d39185f19d22a921068 = L.popup({maxWidth: "100%"});
-        var html_a96c62f7c0b072cb8dd315679d41a850 = $(`<div id="html_a96c62f7c0b072cb8dd315679d41a850" style="width: 100.0%; height: 100.0%;">Kolejka Grawitacyjna Park Szczęśliwicki</div>`)[0];
-        popup_827bfbb9f8414d39185f19d22a921068.setContent(html_a96c62f7c0b072cb8dd315679d41a850);
-        marker_f25378a3a8ee9fede3d65ff194c2d352.bindPopup(popup_827bfbb9f8414d39185f19d22a921068);
-
-        var marker_83825301cade594b87f89ef4defd6f96 = L.marker([52.2545, 21.0127], {}).addTo(map_76501fc6548db0c01a7fcf5f27fcbd2f);
-        var popup_80342d5fdc709cc25269e46d96c1eb28 = L.popup({maxWidth: "100%"});
-        var html_5173b8822c0ed24f29a3e12993e69304 = $(`<div id="html_5173b8822c0ed24f29a3e12993e69304" style="width: 100.0%; height: 100.0%;">Warsaw Spire</div>`)[0];
-        popup_80342d5fdc709cc25269e46d96c1eb28.setContent(html_5173b8822c0ed24f29a3e12993e69304);
-        marker_83825301cade594b87f89ef4defd6f96.bindPopup(popup_80342d5fdc709cc25269e46d96c1eb28);
+        markers.forEach(function(marker) {
+            var markerInstance = L.marker(marker.coords).addTo(map);
+            var popup = L.popup({maxWidth: "100%"}).setContent(
+                $('<div>', {style: "width: 100.0%; height: 100.0%;"}).text(marker.popupText)[0]
+            );
+            markerInstance.bindPopup(popup);
+        });
     </script>
 </body>
 </html>
