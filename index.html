@@ -63,21 +63,21 @@
         ).addTo(map);
 
         var markers = [
-            {coords: [52.2207, 21.0174], popupText: "BAR WAGA"},
-            {coords: [52.241, 21.027], popupText: "Centrum Nauki Kopernik"},
-            {coords: [52.2355, 21.0051], popupText: "Centrum Pieniądza NBP"},
-            {coords: [52.2078, 20.9712], popupText: "Kolejka Grawitacyjna Park Szczęśliwicki"},
-            {coords: [52.2545, 21.0127], popupText: "Multimedialny Park Fontann"},
-            {coords: [52.242, 21.029], popupText: "Prom po Wiśle"},
-            {coords: [52.2376, 21.0273], popupText: "BUM DOBRA"},
-            {coords: [52.2244, 21.0026], popupText: "Niewidzialna Wystawa"},
-            {coords: [52.2475, 21.0139], popupText: "Zamek Królewski"},
-            {coords: [52.2121, 21.0342], popupText: "Łazienki Królewskie"},
-            {coords: [52.2329, 20.9806], popupText: "Muzeum Powstania Warszawskiego"},
-            {coords: [52.2496, 20.9933], popupText: "Muzeum Historii Żydów Polskich POLIN"},
-            {coords: [52.1659, 21.0905], popupText: "Pałac w Wilanowie"},
-            {coords: [52.3273, 21.0375], popupText: "Przystanek Alpaka"},
-            {coords: [52.3401, 21.2471], popupText: "Apartamenty 5.0", iconColor: "pink"}
+            {coords: [52.2207, 21.0174], popupText: "BAR WAGA", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.241, 21.027], popupText: "Centrum Nauki Kopernik", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2355, 21.0051], popupText: "Centrum Pieniądza NBP", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2078, 20.9712], popupText: "Kolejka Grawitacyjna Park Szczęśliwicki", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2545, 21.0127], popupText: "Multimedialny Park Fontann", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.242, 21.029], popupText: "Prom po Wiśle", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2376, 21.0273], popupText: "BUM DOBRA", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2244, 21.0026], popupText: "Niewidzialna Wystawa", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2475, 21.0139], popupText: "Zamek Królewski", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2121, 21.0342], popupText: "Łazienki Królewskie", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2329, 20.9806], popupText: "Muzeum Powstania Warszawskiego", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.2496, 20.9933], popupText: "Muzeum Historii Żydów Polskich POLIN", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.1659, 21.0905], popupText: "Pałac w Wilanowie", linkPlaceholder: "Wklej link do Google Maps"},
+            {coords: [52.3273, 21.0375], popupText: "Przystanek Alpaka", linkPlaceholder: "https://g.co/kgs/yrFdMcV"},
+            {coords: [52.3401, 21.2471], popupText: "Apartamenty 5.0", iconColor: "red", linkPlaceholder: "Wklej link do Google Maps"}
         ];
 
         markers.forEach(function(marker) {
@@ -92,9 +92,27 @@
             });
 
             var markerInstance = L.marker(marker.coords, {icon: icon}).addTo(map);
-            var popup = L.popup({maxWidth: "100%"}).setContent(
-                $('<div>', {style: "width: 100.0%; height: 100.0%;"}).text(marker.popupText)[0]
-            );
+
+            var popupContent = $('<div>')
+                .append($('<div>', {text: marker.popupText}))
+                .append($('<input>', {
+                    type: 'text',
+                    placeholder: marker.linkPlaceholder,
+                    style: 'width: 100%; margin-top: 5px;'
+                }))
+                .append($('<button>', {
+                    text: 'Otwórz w Google Maps',
+                    style: 'width: 100%; margin-top: 10px;'
+                }).click(function() {
+                    var url = popupContent.find('input').val();
+                    if (url) {
+                        window.open(url);
+                    }
+                }));
+
+            var popup = L.popup({maxWidth: "100%"})
+                .setContent(popupContent[0]);
+
             markerInstance.bindPopup(popup);
         });
     </script>
